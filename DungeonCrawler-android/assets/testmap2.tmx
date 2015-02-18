@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="32" height="32" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="mountain_landscape_23" tilewidth="32" tileheight="32">
+  <image source="mountain_landscape_23.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAMBKFr+P3brMdQcNVUVVXV1w8cTTwQ
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztlMENgDAMA7v/XsAEwATQCQpfvACSFdnqxyfd11HaJK0FBQtc4TYpe4cHPA31mewL3rAb6jPZAz7wNdR3Zv/hnCcG5zwxqOap+o6qP1e+Y6UX5V5WelHujvPGMMy4AyGEEEIIaj72nDQJ
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztl0kOgCAMRb3/vdQTOB3A6QBOO787FhUoFIekL/kbCLEpD4JZpijfp0W6F78/IbNlPnV9O3JY5l31pcZVn/JfuG5LnwWu29Jngeu2noUwcqRASuY6Kd8qpEYa5jop33pkQEZjzKcnUr4tyIpsxlhoT6SgepIa0yezJ5Rnoc7auPOJGqf2J7amO5+ocWp/nnSGcjbWmdj7hKqJg899kvK96XOf6HvTzdf/WS5O0dleLg==
+  </data>
+ </layer>
+</map>

@@ -1,0 +1,31 @@
+!SESSION 2015-01-28 18:21:28.718 -----------------------------------------------
+eclipse.buildId=debbuild
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_GB
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.mylyn.tasks.core 1 0 2015-01-28 18:21:58.268
+!MESSAGE Migrating task repository credentials from keyring.
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-01-28 18:21:58.854
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.ui 2 2 2015-01-28 18:22:48.363
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+
+!ENTRY org.eclipse.ui 2 2 2015-01-28 18:23:17.347
+!MESSAGE Invalid preference category path: com.google.gwt.eclipse.core.preferences.ui.GwtPreferencePage (bundle: com.google.gdt.eclipse.designer.gpe, page: com.google.gdt.eclipse.designer.gpe.preferences.DesignerPreferencePage)
+
+!ENTRY org.eclipse.ui.ide 4 4 2015-01-29 19:45:23.693
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 2 1 2015-01-29 19:45:23.693
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2015-01-29 19:45:23.693
+!MESSAGE The project description file (.project) for 'html5' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
