@@ -8,17 +8,23 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Player {
-	private boolean attackStart = false;;
+
+	private final int MOVEMENT_SPEED_WALK = 100;
+	private final int MOVEMENT_SPEED_RUN = 200;
+	
+	private boolean attackStart = false;
 	private float attackTime = 0f;
+	private Animation previousAnimation;
+	private Animation currentAnimation;
 	private PlayerAnimation animation;
 	private PlayerState state;
 	private float x;
 	private float y;
+	private int playerSpeed = MOVEMENT_SPEED_WALK;
 	private Stack<Move> moves;
 	private PlayerMotion currentMotion;
 	private Move currentMove;
-
-	private int MOVEMENT_SPEED_WALK = 100;
+	ArrowFactory arrows;
 
 	public Player() {
 		this.x = 0;
@@ -28,6 +34,7 @@ public class Player {
 		this.currentMove = Move.NONE;
 		this.animation = new PlayerAnimation();
 		this.currentMotion = animation.down();
+		this.arrows = new ArrowFactory(800, 480);
 	}
 
 	public float getX() {
@@ -35,7 +42,7 @@ public class Player {
 	}
 
 	public void setX(int x) {
-		this.x += x * (MOVEMENT_SPEED_WALK * Gdx.graphics.getDeltaTime());
+		this.x += x * (playerSpeed * Gdx.graphics.getDeltaTime());
 	}
 
 	public float getY() {
@@ -43,7 +50,7 @@ public class Player {
 	}
 
 	public void setY(int y) {
-		this.y += y * (MOVEMENT_SPEED_WALK * Gdx.graphics.getDeltaTime());
+		this.y += y * (playerSpeed * Gdx.graphics.getDeltaTime());
 	}
 
 	public void updatePosition() {
@@ -68,7 +75,7 @@ public class Player {
 	}
 
 	public void setMovementSpeed(int newSpeed) {
-		this.MOVEMENT_SPEED_WALK = newSpeed;
+		this.playerSpeed = newSpeed;
 	}
 
 	public void setStateWalk() {
@@ -98,9 +105,12 @@ public class Player {
 	}
 
 	public TextureRegion getFrame(float stateTime) {
-		Animation currentAnimation = animation.getAnimation(currentMove);
-		TextureRegion nextFrame = currentAnimation.getKeyFrame(0, true);
+		currentAnimation = animation.getAnimation(currentMove);
+		TextureRegion nextFrame = currentAnimation.getKeyFrame(0, false);
 		switch (state) {
+		case NONE:
+			nextFrame = currentMotion.getWalkAnimation().getKeyFrame(0, false);
+			break;
 		case SWORD:
 			if (attackStart) {
 				attackTime = stateTime;
@@ -122,7 +132,6 @@ public class Player {
 				attackTime = stateTime;
 				attackStart = false;
 			}
-			System.out.printf("%s\n", stateTime - attackTime);
 			nextFrame = currentAnimation.getKeyFrame(stateTime - attackTime, false);
 			if (currentAnimation.isAnimationFinished(stateTime - attackTime)) {
 				if (moves.isEmpty()) {
@@ -215,6 +224,7 @@ public class Player {
 		setStateBow();
 		addWalk(currentMove);
 		currentMove = currentMotion.getBowMove();
+		arrows.newArrow(currentMove, x, y);
 	}
 
 	public void doAction(int keycode, boolean t) {
@@ -224,6 +234,21 @@ public class Player {
 			doSword();
 		if (isKeyBow(keycode) && t && !isBow())
 			doBow();
+		if(isKeyRun(keycode))
+			doRun(t);
+		
+	}
+	
+	public void doRun(boolean t){
+		if(t) playerSpeed = MOVEMENT_SPEED_RUN;
+		else playerSpeed = MOVEMENT_SPEED_WALK;
+	}
+	
+	public boolean isKeyRun(int keycode)
+	{
+		if(keycode == Keys.SPACE)
+			return true;
+		else return false;
 	}
 
 	public boolean isKeyBow(int keycode) {
@@ -270,6 +295,10 @@ public class Player {
 			return true;
 		else
 			return false;
+	}
+	
+	public ArrowFactory getArrows() {
+		return arrows;
 	}
 
 	public Animation getAnimation(Move move) {

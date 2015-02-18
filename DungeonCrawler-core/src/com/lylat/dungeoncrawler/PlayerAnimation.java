@@ -1,13 +1,9 @@
 package com.lylat.dungeoncrawler;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class PlayerAnimation {
 	Animation currentAnimation;
-	Texture characterSheet;
-	SpriteBatch spriteBatch;
 
 	PlayerMotion right;
 	PlayerMotion left;
@@ -25,26 +21,25 @@ public class PlayerAnimation {
 	public PlayerAnimation() {
 		up = new PlayerMotion(Move.WALK_UP, Move.SWORD_UP, Move.BOW_UP);
 		up.setWalk(8, WALK_ROW, WALK_COL);
-		up.setSword(12, ATTACK_ROW, ATTACK_COL);
+		up.setSword(7, ATTACK_ROW, ATTACK_COL);
 		up.setBow(16, BOW_ROW, BOW_COL);
 
 		left = new PlayerMotion(Move.WALK_LEFT, Move.SWORD_LEFT, Move.BOW_LEFT);
 		left.setWalk(9, WALK_ROW, WALK_LR_COL);
-		left.setSword(13, ATTACK_ROW, ATTACK_COL);
+		left.setSword(8, ATTACK_ROW, ATTACK_COL);
 		left.setBow(17, BOW_ROW, BOW_COL);
 
 		down = new PlayerMotion(Move.WALK_DOWN, Move.SWORD_DOWN, Move.BOW_DOWN);
 		down.setWalk(10, WALK_ROW, WALK_COL);
-		down.setSword(14, ATTACK_ROW, ATTACK_COL);
+		down.setSword(9, ATTACK_ROW, ATTACK_COL);
 		down.setBow(18, BOW_ROW, BOW_COL);
 
 		right = new PlayerMotion(Move.WALK_RIGHT, Move.SWORD_RIGHT, Move.BOW_RIGHT);
 		right.setWalk(11, WALK_ROW, WALK_LR_COL);
-		right.setSword(15, ATTACK_ROW, ATTACK_COL);
+		right.setSword(10, ATTACK_ROW, ATTACK_COL);
 		right.setBow(19, BOW_ROW, BOW_COL);
 
 		currentAnimation = down.getWalkAnimation();
-		spriteBatch = new SpriteBatch();
 	}
 
 	public Animation getAnimation(Move move) {

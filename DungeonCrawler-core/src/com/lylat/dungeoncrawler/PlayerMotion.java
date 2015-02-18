@@ -3,7 +3,6 @@ package com.lylat.dungeoncrawler;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class PlayerMotion {
@@ -20,16 +19,20 @@ public class PlayerMotion {
 	Move walkMove;
 	Move bowMove;
 
+	static TextureRegion[][] tmpSwordBig;
 	static TextureRegion[][] tmpSword;
 	static TextureRegion[][] tmpBow;
 
-	private static final float SWORD_SPEED = 0.05f;
+	private static final float SWORD_SPEED = 0.025f;
+	private static final float BOW_SPEED = 0.025f;
 	private static final float WALK_SPEED = 0.1f;
 
 	static {
 		final int FRAME_SIZE = 64;
+		Texture characterSheetSwordBig = new Texture(Gdx.files.internal("character_big_sword.png"));
 		Texture characterSheetSword = new Texture(Gdx.files.internal("character_sword.png"));
 		Texture characterSheetBow = new Texture(Gdx.files.internal("character_bow.png"));
+		tmpSwordBig = TextureRegion.split(characterSheetSwordBig, FRAME_SIZE*3, FRAME_SIZE*3);
 		tmpSword = TextureRegion.split(characterSheetSword, FRAME_SIZE, FRAME_SIZE);
 		tmpBow = TextureRegion.split(characterSheetBow, FRAME_SIZE, FRAME_SIZE);
 	}
@@ -56,7 +59,7 @@ public class PlayerMotion {
 		int index = 0;
 		for (int i = 0; i < row; i++)
 			for (int j = 0; j < col; j++) {
-				this.swordFrames[index] = tmpSword[i + start][j];
+				this.swordFrames[index] = tmpSwordBig[i + start][j];
 				index++;
 			}
 		swordAnimation = new Animation(SWORD_SPEED, swordFrames);
@@ -70,7 +73,7 @@ public class PlayerMotion {
 				this.bowFrames[index] = tmpBow[i + start][j];
 				index++;
 			}
-		bowAnimation = new Animation(SWORD_SPEED, bowFrames);
+		bowAnimation = new Animation(BOW_SPEED, bowFrames);
 	}
 
 	public Animation getWalkAnimation() {

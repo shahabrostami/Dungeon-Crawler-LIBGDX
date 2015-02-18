@@ -2,6 +2,7 @@ package com.lylat.dungeoncrawler;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Input.Keys;
 
 public class Input implements InputProcessor {
 
